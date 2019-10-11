@@ -1,3 +1,3 @@
 # angleMeasure
 
-arg： -i/--input + imagePath
+usage: python demo.py -i imagePath
