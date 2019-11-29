@@ -90,18 +90,20 @@ class AngleMeasure:
         return angle, a_l
 
     def result_process(self, a_l):
-
+        
+        for a in a_l:
+            if a >= 90:
+                a -= 90
         a_l = np.array(a_l)
         a_l_unique = np.unique(a_l)
         a_l_copy = []
         if len(a_l_unique) == 1:
             result = a_l[0]
-        elif len(a_l_unique) > 1:
-            if len(a_l_unique) > 3:
-                mode = stats.mode(a_l)[0][0]
-                for i in a_l:
-                    if mode - 10 <= i <= mode + 10:
-                        a_l_copy.append(i)
+        else:
+            mode = stats.mode(a_l)[0][0]
+            for i in a_l:
+                if mode - 10 <= i <= mode + 10:
+                    a_l_copy.append(i)
             result = np.mean(a_l_copy)
 
         return result
